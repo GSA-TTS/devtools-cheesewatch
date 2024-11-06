@@ -1,6 +1,6 @@
 # CheeseWatch - Don't Move The Cheese
 
-![Global Cheese Positioning System](https://github.com/pauldoomgov/cheesewatch/workflows/Global%20Cheese%20Positioning%20System/badge.svg)
+![Global Cheese Positioning System](https://github.com/GSA-TTS/devtools-cheesewatch/workflows/Global%20Cheese%20Positioning%20System/badge.svg)
 
 
 ![Mouse minding its cheese](misc/mouse-with-cheese.png)
