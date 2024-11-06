@@ -75,14 +75,14 @@ jobs:
           cat temp/changeset.diff
           echo "COMMITID=$(git rev-parse HEAD)" >> $GITHUB_ENV
       - name: Send alert to Slack on changes
-          # Requires a GitHub environment secret for SLACK_WEBHOOK_URL which should target a Workflow in Slack.
-          # See https://github.com/marketplace/actions/slack-send#technique-1-slack-workflow-builder
-          if: env.CHANGED == 1 && github.ref == 'refs/heads/main'
-          uses: slackapi/slack-github-action@v1
-          env:
-            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-          with:
-            payload: |
-              {
-                "message": "The cheese has moved!  For the change see https://github.com/${{ github.repository }}/commit/${{ env.COMMITID }}"
-              }
+        # Requires a GitHub environment secret for SLACK_WEBHOOK_URL which should target a Workflow in Slack.
+        # See https://github.com/marketplace/actions/slack-send#technique-1-slack-workflow-builder
+        if: env.CHANGED == 1 && github.ref == 'refs/heads/main'
+        uses: slackapi/slack-github-action@v1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        with:
+          payload: |
+            {
+              "message": "The cheese has moved!  For the change see https://github.com/${{ github.repository }}/commit/${{ env.COMMITID }}"
+            }
