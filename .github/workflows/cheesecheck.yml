@@ -5,13 +5,13 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: "15 * * * *"
+    - cron: "17 * * * *"
 
 env:
   # Arguments for checks should be set here and are public
-  NAMELIST: "a.pivcac.prod.login.gov a.pivcac.staging.login.gov"
-  CERTLIST: "secure.login.gov idp.staging.login.gov a.pivcac.prod.login.gov a.pivcac.staging.login.gov login.gov www.login.gov mta-sts.login.gov"
-  DNSSECLIST: "login.gov identitysandbox.gov"
+  NAMELIST: "gsa-0.gitlab-dedicated.us"
+  CERTLIST: "gsa-0.gitlab-dedicated.us"
+  # DNSSECLIST: ""
 
 jobs:
   runchecks:
@@ -32,8 +32,8 @@ jobs:
       ### START CHECKS
       - name: Lookup DNS Records
         run: bin/namecheck.py ${NAMELIST} > temp/namecheck.json
-      - name: Lookup DNSSEC Records
-        run: bin/dnsseccheck.py ${DNSSECLIST} > temp/dnsseccheck.json
+      #- name: Lookup DNSSEC Records
+      #  run: bin/dnsseccheck.py ${DNSSECLIST} > temp/dnsseccheck.json
       - name: Gather TLS Certificate Chains
         run: bin/certcheck.py ${CERTLIST} > temp/certcheck.json
       ### END CHECKS
@@ -74,15 +74,15 @@ jobs:
         run: |
           cat temp/changeset.diff
           echo "COMMITID=$(git rev-parse HEAD)" >> $GITHUB_ENV
-      - name: Slack Changes
-        # Requires SLACK_WEBHOOK_URL and SLACK_CHANNEL secrets to be
-        # set.
-        if: env.CHANGED == 1 && github.ref == 'refs/heads/main'
-        uses: edge/simple-slack-notify@master
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        with:
-          username: "CheeseWatch"
-          channel: ${{ secrets.SLACK_CHANNEL }}
-          color: "danger"
-          text: "The cheese has moved!  See: https://github.com/${{ github.repository }}/commit/${{ env.COMMITID }}"
+      # - name: Slack Changes
+      #   # Requires SLACK_WEBHOOK_URL and SLACK_CHANNEL secrets to be
+      #   # set.
+      #   if: env.CHANGED == 1 && github.ref == 'refs/heads/main'
+      #   uses: edge/simple-slack-notify@master
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      #   with:
+      #     username: "CheeseWatch"
+      #     channel: ${{ secrets.SLACK_CHANNEL }}
+      #     color: "danger"
+      #     text: "The cheese has moved!  See: https://github.com/${{ github.repository }}/commit/${{ env.COMMITID }}"
