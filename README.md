@@ -25,6 +25,7 @@ The CheeseWatch process:
     - [namecheck](#namecheck)
     - [certcheck](#certcheck)
     - [dnsseccheck](#dnsseccheck)
+  - [Notifications](#notifications)
   - [Security and Privacy](#security-and-privacy)
   - [Jobs](#jobs)
   - [Local Testing](#local-testing)
@@ -390,6 +391,17 @@ Each job must return a consistent result.   Sort your output,
 don't include time or other things that change, etc.
 
 Keep the mouse happy.
+
+## Notifications
+
+You can optionally send notifications to Slack using a Workflow trigger webhook.
+See https://github.com/marketplace/actions/slack-send#technique-1-slack-workflow-builder
+for general setup information. You will also need to:
+
+* Setup a GitHub environment to hold the SLACK_WEBHOOK_URL secret. (Suggested name
+  is `production` and the environment should be scoped to the `main` branch only.)
+* Create a secret under the environment called `SLACK_WEBHOOK_URL` that contains
+  the workflow specific trigger webhook URL.
 
 ## Local Testing
 

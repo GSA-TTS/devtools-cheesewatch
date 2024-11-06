@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Make Temporary Results Dir
+      - name: Make temporary results dir
         run: mkdir -p temp
       - name: Setup Python 3
         uses: actions/setup-python@v5
@@ -30,15 +30,15 @@ jobs:
           pip install -r requirements.txt
 
       ### START CHECKS
-      - name: Lookup DNS Records
+      - name: Lookup DNS records
         run: bin/namecheck.py ${NAMELIST} > temp/namecheck.json
       #- name: Lookup DNSSEC Records
       #  run: bin/dnsseccheck.py ${DNSSECLIST} > temp/dnsseccheck.json
-      - name: Gather TLS Certificate Chains
+      - name: Gather TLS certificate chains
         run: bin/certcheck.py ${CERTLIST} > temp/certcheck.json
       ### END CHECKS
 
-      - name: Store Current Results
+      - name: Store current results
         uses: actions/upload-artifact@v4
         with:
           name: cheeserun-results-${{github.run_id}}
@@ -58,12 +58,12 @@ jobs:
         with:
           name: cheeserun-results-${{github.run_id}}
           path: temp/
-      - name: Overwrite Saved Results
+      - name: Overwrite saved results
         run: |
           rm -rf results/*
           cp -r temp/* results/
           git add -A results
-      - name: Compare Results
+      - name: Compare results
         run: git diff --exit-code --staged results/ >> temp/changeset.diff || echo "CHANGED=1" >> $GITHUB_ENV
       - name: Commit and Push Changes
         if: env.CHANGED == 1
@@ -74,15 +74,15 @@ jobs:
         run: |
           cat temp/changeset.diff
           echo "COMMITID=$(git rev-parse HEAD)" >> $GITHUB_ENV
-      # - name: Slack Changes
-      #   # Requires SLACK_WEBHOOK_URL and SLACK_CHANNEL secrets to be
-      #   # set.
-      #   if: env.CHANGED == 1 && github.ref == 'refs/heads/main'
-      #   uses: edge/simple-slack-notify@master
-      #   env:
-      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      #   with:
-      #     username: "CheeseWatch"
-      #     channel: ${{ secrets.SLACK_CHANNEL }}
-      #     color: "danger"
-      #     text: "The cheese has moved!  See: https://github.com/${{ github.repository }}/commit/${{ env.COMMITID }}"
+      - name: Send alert to Slack on changes
+          # Requires a GitHub environment secret for SLACK_WEBHOOK_URL which should target a Workflow in Slack.
+          # See https://github.com/marketplace/actions/slack-send#technique-1-slack-workflow-builder
+          if: env.CHANGED == 1 && github.ref == 'refs/heads/main'
+          uses: slackapi/slack-github-action@v1
+          env:
+            SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          with:
+            payload: |
+              {
+                "message": "The cheese has moved!  For the change see https://github.com/${{ github.repository }}/commit/${{ env.COMMITID }}"
+              }
