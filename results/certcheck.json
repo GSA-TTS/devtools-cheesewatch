@@ -1,13 +1,13 @@
 {
     "gsa-0.gitlab-dedicated.us": {
-        "expiration": "2025-01-08T16:56:23",
+        "expiration": "2025-03-08T16:17:52",
         "chain": {
             "/CN=gsa-0.gitlab-dedicated.us": {
-                "serial": 330541610331777948874454160632427899677438,
-                "issuer": "/C=US/O=Let's Encrypt/CN=E5"
+                "serial": 405239374280434651266446850505160504467494,
+                "issuer": "/C=US/O=Let's Encrypt/CN=E6"
             },
-            "/C=US/O=Let's Encrypt/CN=E5": {
-                "serial": 174873564306387906651619802726858882526,
+            "/C=US/O=Let's Encrypt/CN=E6": {
+                "serial": 234397126118090224789023519560838753080,
                 "issuer": "/C=US/O=Internet Security Research Group/CN=ISRG Root X1"
             }
         }
