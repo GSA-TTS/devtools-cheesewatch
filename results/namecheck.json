@@ -1,5 +1,7 @@
 {
     "gsa-0.gitlab-dedicated.us": [
-        "The resolution lifetime expired after 5.402 seconds: Server Do53:127.0.0.53@53 answered The DNS operation timed out.; Server Do53:127.0.0.53@53 answered The DNS operation timed out.; Server Do53:127.0.0.53@53 answered The DNS operation timed out."
+        [
+            "gsa-0.gitlab-dedicated.us. 0 IN A 172.65.238.46"
+        ]
     ]
 }
