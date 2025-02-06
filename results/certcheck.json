@@ -11,5 +11,18 @@
                 "issuer": "/C=US/O=Internet Security Research Group/CN=ISRG Root X1"
             }
         }
+    },
+    "gsa.gitlab-dedicated.us": {
+        "expiration": "2025-04-15T16:48:45",
+        "chain": {
+            "/CN=gsa.gitlab-dedicated.us": {
+                "serial": 337726430344140035716472372697329741663245,
+                "issuer": "/C=US/O=Let's Encrypt/CN=E5"
+            },
+            "/C=US/O=Let's Encrypt/CN=E5": {
+                "serial": 174873564306387906651619802726858882526,
+                "issuer": "/C=US/O=Internet Security Research Group/CN=ISRG Root X1"
+            }
+        }
     }
 }
