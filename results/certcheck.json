@@ -13,10 +13,10 @@
         }
     },
     "gsa.gitlab-dedicated.us": {
-        "expiration": "2025-08-11T15:44:12",
+        "expiration": "2025-10-09T15:07:12",
         "chain": {
             "/CN=gsa.gitlab-dedicated.us": {
-                "serial": 491106350013029039744001655176204234866034,
+                "serial": 507892223424673240570544486953660099842360,
                 "issuer": "/C=US/O=Let's Encrypt/CN=E6"
             },
             "/C=US/O=Let's Encrypt/CN=E6": {
