@@ -1,9 +1,9 @@
 {
     "gsa-0.gitlab-dedicated.us": {
-        "expiration": "2025-12-28T14:29:44",
+        "expiration": "2025-12-30T14:08:11",
         "chain": {
             "/CN=gsa-0.gitlab-dedicated.us": {
-                "serial": 573598928735054472378697949901628070982306,
+                "serial": 471109737669156325317013946607362845051866,
                 "issuer": "/C=US/O=Let's Encrypt/CN=E7"
             },
             "/C=US/O=Let's Encrypt/CN=E7": {
