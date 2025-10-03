@@ -9,8 +9,8 @@ on:
 
 env:
   # Arguments for checks should be set here and are public
-  NAMELIST: "gsa-0.gitlab-dedicated.us gsa.gitlab-dedicated.us"
-  CERTLIST: "gsa-0.gitlab-dedicated.us gsa.gitlab-dedicated.us"
+  NAMELIST: "gsa.gitlab-dedicated.us"
+  CERTLIST: "gsa.gitlab-dedicated.us"
   # DNSSECLIST: ""
 
 jobs:
